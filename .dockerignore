@@ -1,0 +1,6 @@
+# Forbid all files
+*
+
+# Allow whitelist
+!dynhost.sh
+ 
