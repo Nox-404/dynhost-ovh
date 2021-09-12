@@ -1,0 +1,8 @@
+1. Trigger manually
+  You may trigger the job manually by running the following command:
+    kubectl --namespace {{ .Release.Namespace }} create job --from=cronjob/{{ include "dynhost-ovh.fullname" . }} JOBNAME
+    ex: kubectl --namespace {{ .Release.Namespace }} create job --from=cronjob/{{ include "dynhost-ovh.fullname" . }} {{ include "dynhost-ovh.fullname" . }}-$(date +%s)
+
+2. Check that it worked
+  After the job has completed once, you may check that it worked using the following command:
+    helm --namespace {{ .Release.Namespace }} test {{ .Release.Name }}
