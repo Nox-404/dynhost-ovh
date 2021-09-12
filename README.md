@@ -52,10 +52,10 @@ helm delete [RELEASE]
 
 | Name                         | Description                                                                            | Value                    |
 | -----------------------------| -------------------------------------------------------------------------------------- | ------------------------ |
-| `dynhost.host`**\***         | The dynhost DNS name to update                                                         | ``                       |
-| `dynhost.login`**\***        | The dynhost identifier                                                                 | ``                       |
-| `dynhost.password`**\***     | The dynhost password                                                                   | ``                       |
-| `dynhost.externalSecretName` | The name of a secret containing the script's parameters to use instead of creating one | ``                       |
+| `dynhost.host`**\***         | The dynhost DNS name to update                                                         | `""`                       |
+| `dynhost.login`**\***        | The dynhost identifier                                                                 | `""`                       |
+| `dynhost.password`**\***     | The dynhost password                                                                   | `""`                       |
+| `dynhost.externalSecretName` | The name of a secret containing the script's parameters to use instead of creating one | `""`                       |
 | `suspend`                    | Wether to suspend the cron or not                                                      | `no`                     |
 | `schedule`                   | The schedule of the cronjob. Use cron syntax                                           | `0 * * * *` (every hour) |
 | `image.repository`           | The docker image repository                                                            | `nox404/dynhost-ovh`     |
@@ -89,9 +89,9 @@ The script uses environment variable as parameters.
 
 | Name       | Description                                    | Value |
 | ---------- | ---------------------------------------------- | ----- |
-| `HOST`     | **Mandatory** - The dynhost DNS name to update | ``    |
-| `LOGIN`    | **Mandatory** - The dynhost identifier         | ``    |
-| `PASSWORD` | **Mandatory** - The dynhost password           | ``    |
+| `HOST`     | **Mandatory** - The dynhost DNS name to update | `""`    |
+| `LOGIN`    | **Mandatory** - The dynhost identifier         | `""`    |
+| `PASSWORD` | **Mandatory** - The dynhost password           | `""`    |
 
 ## Building and publishing the Docker image
 
