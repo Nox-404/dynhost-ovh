@@ -1,5 +1,7 @@
 # dynhost-ovh
 
+[![Build Status](https://drone.krondor.fr/api/badges/nox/dynhost-ovh/status.svg?ref=refs/heads/kubernetes)](https://drone.krondor.fr/nox/dynhost-ovh)
+
 A simple cronjob to update DynHost on OVH hosting.
 
 > forked from [yjajkiew/dynhost-ovh](https://github.com/yjajkiew/dynhost-ovh)
