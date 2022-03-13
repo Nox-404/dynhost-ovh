@@ -1,0 +1,26 @@
+---
+kind: pipeline
+type: kubernetes
+name: default
+steps:
+  # Generate docker image
+  - name: docker-release
+    image: plugins/docker
+    settings:
+      dockerfile: docker/Dockerfile
+      repo: nox404/dynhost-ovh
+      auto_tag: yes
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+  # Alerting
+  - name: notify
+    image: plugins/slack
+    settings:
+      webhook:
+        from_secret: mattermost_hook
+    when:
+      status:
+      - failure
+      - success
