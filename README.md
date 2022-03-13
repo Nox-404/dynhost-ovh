@@ -2,6 +2,8 @@
 
 A simple cronjob to update DynHost on OVH hosting.
 
+> forked from [yjajkiew/dynhost-ovh](https://github.com/yjajkiew/dynhost-ovh)
+
 ## Introduction
 
 This repo provides a script to retrieve the public ip of an host and set a dynhost on OVH accordingly.
