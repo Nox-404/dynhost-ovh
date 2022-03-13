@@ -12,19 +12,45 @@ A docker image and a Chart is also provided for deployment on kubernetes.
 
 > You may also just use `cron` to run the script.
 
+
+## How it works
+
+1. The command `dig` is used to retrieve the IP address of your domain name.
+2. The command `curl` (with the website `ifconfig.co`) is used to retrieve the current public IP address of your machine.
+3. The two IPs are compared and if necessary a `curl` command to OVH is used to update your DynHost with your current public IP address.
+
 ## Prerequisites
-
-### If using the Chart
-
-* Kubernetes 1.21
-* helm 3.6.3
-
-> Other versions might work but were not tested.
 
 ### If running on the host
 
 * `curl` - HTTP calls
 * `dig` - DNS lookup
+
+> On ubuntu `dig` is provided by the `dnsutils` package
+
+### If using the Chart
+
+* Kubernetes `1.21`
+* helm `3.6.3`
+
+> Other versions might work but were not tested.
+
+## Installing as an hourly CRON
+
+1. Download the `dynhost.sh` script and put it in the folder `/etc/cron.hourly` (to check every hour)
+2. Add execution permissions to file : `chmod +x dynhost.sh`
+3. Rename `dynhost.sh` to `dynhost` (because `.` at the end of the file name is not allowed in cron)
+4. Modify the script with variables : `HOST`, `LOGIN`, `PASSWORD`
+
+## Script parameters
+
+The script uses environment variable as parameters.
+
+| Name       | Description                                    | Value |
+| ---------- | ---------------------------------------------- | ----- |
+| `HOST`     | **Mandatory** - The dynhost DNS name to update | `""`  |
+| `LOGIN`    | **Mandatory** - The dynhost identifier         | `""`  |
+| `PASSWORD` | **Mandatory** - The dynhost password           | `""`  |
 
 ## Installing the Chart
 
@@ -45,7 +71,7 @@ helm install [RELEASE] chart \
 ## Uninstalling the Chart
 
 ```sh
-helm delete [RELEASE]
+helm uninstall [RELEASE]
 ```
 
 ## Chart parameters
@@ -84,16 +110,6 @@ helm delete [RELEASE]
 | `nodeSelector`               | Constrain the pod to specific nodes                                                    | `{}`            |
 | `tolerations`                | Pod tolerations                                                                        | `[]`            |
 | `affinity`                   | Pod affinities                                                                         | `{}`            |
-
-## Script parameters
-
-The script uses environment variable as parameters.
-
-| Name       | Description                                    | Value |
-| ---------- | ---------------------------------------------- | ----- |
-| `HOST`     | **Mandatory** - The dynhost DNS name to update | `""`    |
-| `LOGIN`    | **Mandatory** - The dynhost identifier         | `""`    |
-| `PASSWORD` | **Mandatory** - The dynhost password           | `""`    |
 
 ## Building and publishing the Docker image
 

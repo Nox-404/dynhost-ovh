@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+# Set those accordingly
+HOST=
+LOGIN=
+PASSWORD=
+
 # Account configuration
 if [ -z $HOST ]
 then

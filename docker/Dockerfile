@@ -1,8 +1,8 @@
 FROM alpine:latest
 
-ENV HOST=DOMAIN_NAME \
-    LOGIN=LOGIN \
-    PASSWORD=PASSWORD
+ENV HOST= \
+    LOGIN= \
+    PASSWORD=
 
 RUN addgroup dynhost \
   && adduser -G dynhost -D -H dynhost
